@@ -18,13 +18,14 @@ import type { Key } from "react";
 import { format } from "date-fns";
 import { toCurrency } from "~/utils/formatCurrency";
 import { NumOfBathrooms, NumOfBeds, NumOfCars } from "./homeDetailTags";
+import { StarredButton } from "./starredButton"
 
 type Props = {
-  listings: ListingData[];
-};
+  listings: ListingData[]
+}
 
 export const ListingTable = ({ listings }: Props) => {
-  const isSold = listings.find((e) => e.badge == "Sold") !== undefined;
+  const isSold = listings.find((e) => e.badge == "Sold") !== undefined
 
   return (
     <TableContainer marginTop={6} minW={800} maxW={1600}>
@@ -39,6 +40,7 @@ export const ListingTable = ({ listings }: Props) => {
             {!isSold && <Th>Listed Range</Th>}
             <Th>{isSold ? "Sold Date" : "Updated Date"}</Th>
             <Th>View Listing</Th>
+            {!isSold ? <Th></Th> : null}
           </Tr>
         </Thead>
         <Tbody>
@@ -81,10 +83,15 @@ export const ListingTable = ({ listings }: Props) => {
                   View
                 </Button>
               </Td>
+              {!isSold ? (
+                <Td>
+                  <StarredButton id={e.id} starred={e.starred} route="/sale" />
+                </Td>
+              ) : null}
             </Tr>
           ))}
         </Tbody>
       </Table>
     </TableContainer>
-  );
-};
+  )
+}

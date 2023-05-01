@@ -1,14 +1,7 @@
-import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "@remix-run/react";
-import MainNavigation from "./components/mainNavigation";
-import theme from "./theme";
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react"
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react"
+import MainNavigation from "./components/mainNavigation"
+import theme from "./theme"
 
 export default function App() {
   return (
@@ -20,6 +13,7 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <ChakraProvider theme={theme} resetCSS={true}>
           <MainNavigation />
           <Outlet />
@@ -29,5 +23,5 @@ export default function App() {
         </ChakraProvider>
       </body>
     </html>
-  );
+  )
 }

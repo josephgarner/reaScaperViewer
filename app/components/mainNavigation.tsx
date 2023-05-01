@@ -10,16 +10,19 @@ import {
   Checkbox,
   FormControl,
   IconButton,
-} from "@chakra-ui/react";
-import { BsFillMoonFill } from "react-icons/bs";
+  useColorMode,
+} from "@chakra-ui/react"
+import { BsFillMoonFill, BsSunFill } from "react-icons/bs"
 
 function MainNavigation() {
-  const path = useMatches();
-  console.log(path[1].pathname);
+  const path = useMatches()
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <Flex minWidth="max-content" alignItems="center" gap="2" padding="2" marginRight={2}>
       <Box p="2">
-        <Heading size="xl">REA Scraper</Heading>
+        <Heading size="xl" color="gray.600">
+          REA Scraper
+        </Heading>
       </Box>
       <Spacer />
       <Box minW={400}>
@@ -51,7 +54,12 @@ function MainNavigation() {
       </Box>
       <Spacer />
       <ButtonGroup gap="2">
-        <IconButton colorScheme="blue" aria-label="Search database" icon={<BsFillMoonFill />} />
+        <IconButton
+          onClick={toggleColorMode}
+          colorScheme="blue"
+          aria-label="Search database"
+          icon={colorMode === "light" ? <BsFillMoonFill /> : <BsSunFill />}
+        />
         <Button
           as={NavLink}
           to="/"
@@ -87,7 +95,7 @@ function MainNavigation() {
         </Button>
       </ButtonGroup>
     </Flex>
-  );
+  )
 }
 
 export default MainNavigation;

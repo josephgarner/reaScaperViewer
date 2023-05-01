@@ -2,26 +2,29 @@ import { json } from "@remix-run/node";
 import type { LoaderArgs } from "@remix-run/node";
 import type { V2_MetaFunction } from "@remix-run/react";
 import { useLoaderData } from "@remix-run/react";
-import { Flex, Center } from "@chakra-ui/react";
-import { ListingTable } from "~/components/listingTable";
-import { getSoldListings } from "~/server/service/soldListingsService";
-import { getSearchParams } from "~/utils/getSearchParams";
-import { matchSorter } from "match-sorter";
+import { Flex, Center, Heading } from "@chakra-ui/react"
+import { ListingTable } from "~/components/listingTable"
+import { getSoldListings } from "~/server/service/soldListingsService"
+import { getSearchParams } from "~/utils/getSearchParams"
+import { matchSorter } from "match-sorter"
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "New Remix App" }];
-};
+  return [{ title: "REA Scraper | Sold" }]
+}
 
 export default function Sold() {
-  const listings = useLoaderData();
+  const listings = useLoaderData()
 
   return (
     <Flex direction="column" padding={"24px"}>
-      <Center>
+      <Center flexDirection="column" alignItems="inherit">
+        <Heading as="h2" size="lg">
+          Sold Listings
+        </Heading>
         <ListingTable listings={listings} />
       </Center>
     </Flex>
-  );
+  )
 }
 
 export async function loader({ request }: LoaderArgs) {

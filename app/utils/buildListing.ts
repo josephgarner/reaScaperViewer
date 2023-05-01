@@ -24,5 +24,6 @@ export const buildListing = (listing: BeAnObject) => {
     available_date: listing.get("available_date"),
     sold_date: listing.get("sold_date"),
     scraped_date: listing.get("scraped_date"),
-  };
+    starred: listing.get("starred"),
+  }
 };

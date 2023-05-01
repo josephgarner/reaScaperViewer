@@ -12,16 +12,18 @@ import {
   Link,
   Text,
   Tag,
-} from "@chakra-ui/react";
-import type { Key } from "react";
-import type { Matched } from "~/types";
-import { toCurrency } from "~/utils/formatCurrency";
-import { NumOfBathrooms, NumOfBeds, NumOfCars } from "./homeDetailTags";
-import { SoldPriceStat } from "./soldPriceStat";
+  IconButton,
+} from "@chakra-ui/react"
+import type { Key } from "react"
+import type { Matched } from "~/types"
+import { toCurrency } from "~/utils/formatCurrency"
+import { NumOfBathrooms, NumOfBeds, NumOfCars } from "./homeDetailTags"
+import { SoldPriceStat } from "./soldPriceStat"
+import { StarredButton } from "./starredButton"
 
 type Props = {
-  matching: Matched[];
-};
+  matching: Matched[]
+}
 
 export const MatchedTable = ({ matching }: Props) => {
   return (
@@ -37,12 +39,13 @@ export const MatchedTable = ({ matching }: Props) => {
             <Th>Listed Range</Th>
             <Th>Sold Date</Th>
             <Th>Final Sale Price</Th>
-            <Th>View Listing</Th>
+            <Th>View</Th>
+            <Th></Th>
           </Tr>
         </Thead>
         <Tbody>
           {matching.map((e: Matched) => {
-            const { sold, buy } = e;
+            const { sold, buy } = e
             return (
               <Tr key={sold.id as Key}>
                 <Td>
@@ -71,23 +74,25 @@ export const MatchedTable = ({ matching }: Props) => {
                   <SoldPriceStat listedPrice={buy.price} soldPrice={sold.price} />
                 </Td>
                 <Td>
-                  <Button
+                  <IconButton
                     as={Link}
-                    leftIcon={<ViewIcon />}
+                    icon={<ViewIcon />}
                     colorScheme="blue"
                     variant="solid"
                     href={sold.url}
                     isExternal
+                    aria-label="view listing"
                     style={{ textDecoration: "none" }}
-                  >
-                    View
-                  </Button>
+                  />
+                </Td>
+                <Td>
+                  <StarredButton id={buy.id} starred={buy.starred} route="/" />
                 </Td>
               </Tr>
-            );
+            )
           })}
         </Tbody>
       </Table>
     </TableContainer>
-  );
-};
+  )
+}
