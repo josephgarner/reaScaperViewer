@@ -15,17 +15,16 @@ import {
 import { ViewIcon } from "@chakra-ui/icons";
 import type { ListingData } from "~/types";
 import type { Key } from "react";
-import { format } from "date-fns";
 import { toCurrency } from "~/utils/formatCurrency";
 import { NumOfBathrooms, NumOfBeds, NumOfCars } from "./homeDetailTags";
-import { StarredButton } from "./starredButton"
+import { StarredButton } from "./starredButton";
 
 type Props = {
-  listings: ListingData[]
-}
+  listings: ListingData[];
+};
 
 export const ListingTable = ({ listings }: Props) => {
-  const isSold = listings.find((e) => e.badge == "Sold") !== undefined
+  const isSold = listings.find((e) => e.badge == "Sold") !== undefined;
 
   return (
     <TableContainer marginTop={6} minW={800} maxW={1600}>
@@ -69,7 +68,7 @@ export const ListingTable = ({ listings }: Props) => {
                   </Text>
                 </Td>
               )}
-              <Td>{isSold ? e.sold_date : format(new Date(e.scraped_date).setHours(-10), "MMM do yyyy")}</Td>
+              <Td>{isSold ? e.sold_date : `${e.scraped_date}`}</Td>
               <Td>
                 <Button
                   as={Link}
@@ -93,5 +92,5 @@ export const ListingTable = ({ listings }: Props) => {
         </Tbody>
       </Table>
     </TableContainer>
-  )
-}
+  );
+};
