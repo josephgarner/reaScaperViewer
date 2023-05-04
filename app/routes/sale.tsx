@@ -65,9 +65,10 @@ export async function loader({ request }: LoaderArgs) {
   }
 
   const search = getSearchParams(request);
+
   if (search.suburbs.length === 0 && !search.addressQuery) {
     const starredListings = buyListings.filter((e) => e.starred === true);
-    const listings = buyListings.filter((e) => e.starred === false);
+    const listings = buyListings.filter((e) => e.starred === false).slice(0, 50);
     return { listings, starredListings };
   }
 

@@ -57,7 +57,7 @@ export async function loader({ request }: LoaderArgs) {
   }
 
   const search = getSearchParams(request);
-  if (search.suburbs.length === 0 && !search.addressQuery) return soldListings;
+  if (search.suburbs.length === 0 && !search.addressQuery) return soldListings.slice(0, 50);
 
   const suburbFilter = soldListings.filter((e) => search.suburbs.includes(e.suburb));
 

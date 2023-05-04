@@ -14,9 +14,11 @@ export async function getMatchedListings(): Promise<Matched[]> {
     return newList;
   }, []);
 
-  matchedList.sort((a, b) =>
-    a.sold.sold_date!! > b.sold.sold_date!! ? -1 : a.sold.sold_date!! > b.sold.sold_date!! ? 1 : 0
-  );
+  matchedList.sort((a, b) => {
+    const aDate = new Date(a.sold.sold_date!!.toString());
+    const bDate = new Date(b.sold.sold_date!!.toString());
+    return aDate > bDate ? -1 : aDate > bDate ? 1 : 0;
+  });
 
   return matchedList;
 }
