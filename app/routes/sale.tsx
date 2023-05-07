@@ -6,6 +6,7 @@ import { getBuyListings } from "~/server/service/buyListingsService";
 import { ListingTable } from "~/components/listingTable";
 import { getSearchParams } from "~/utils/getSearchParams";
 import { matchSorter } from "match-sorter";
+import { ListPriceStat } from "~/components/listPriceStat";
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: "REA Scraper | For Sale" }];
@@ -29,6 +30,9 @@ export default function Sale() {
 
   return (
     <Flex direction="column" padding={"24px"}>
+      <Center>
+        <ListPriceStat />
+      </Center>
       {starredListings.length > 0 && (
         <Center>
           <Center flexDirection="column" marginBottom="10" alignItems="inherit">

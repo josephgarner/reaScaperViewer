@@ -64,7 +64,7 @@ export const ListingTable = ({ listings }: Props) => {
               {!isSold && (
                 <Td>
                   <Text isTruncated maxW="150" height={5}>
-                    {e.price_text}
+                    {e.price_text ? e.price_text : "No List Price"}
                   </Text>
                 </Td>
               )}
