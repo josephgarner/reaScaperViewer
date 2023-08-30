@@ -2,6 +2,14 @@
 
 ![screenshot](./REA-Scraper.png)
 
+## Aim
+While looking to purchase a house we wanted to know what the market in the area was actaully doing rather then reading general stats on the rise and fall of the housing market.
+This project will scrap the REA website for listings that have sold and listing that are for sale and save them to a database. An application would then scan the two collections looking for matching to see what a house was listed for and what it sold for. The data was then displayed to the user.
+This provided valuble information when working out how much to offer when purchasing a house.
+
+#### Developers Note
+Sadly REA increased the security and the scaping tool that was being used ceased to function so the project was stopped.
+
 ## Development
 
 From your terminal:
